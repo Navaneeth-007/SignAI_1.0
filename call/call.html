@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignAI - Video Call</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📞</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="call.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <img src="../assets/logo.png" alt="SignAI Logo">
+            <span>SignAI</span>
+        </div>
+        <div class="nav-links">
+            <button id="backBtn" class="nav-button" onclick="window.location.href='../home/home.html'">
+                <img src="../assets/back.svg" alt="Back">
+                Back to Home
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Call Interface -->
+    <div class="container">
+        <div class="video-grid">
+            <div class="video-wrapper remote">
+                <video id="remoteVideo" autoplay playsinline></video>
+                <div class="connecting-overlay">
+                    <div class="connecting-text">
+                        <div class="dots-loading"></div>
+                        Connecting...
+                    </div>
+                </div>
+                <div class="user-label">Other Person</div>
+            </div>
+            <div class="video-wrapper local">
+                <video id="localVideo" autoplay playsinline muted></video>
+                <div class="user-label">You</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="endCall" class="control-button">End Call</button>
+        </div>
+    </div>
+
+    <script>
+        // Get DOM elements
+        const localVideo = document.getElementById('localVideo');
+        const endCallButton = document.getElementById('endCall');
+        let localStream = null;
+
+        // Initialize video stream
+        async function initializeVideo() {
+            try {
+                // Get user media
+                localStream = await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        width: { ideal: 640 },
+                        height: { ideal: 480 },
+                        facingMode: 'user'
+                    },
+                    audio: false
+                });
+
+                // Display local video
+                localVideo.srcObject = localStream;
+            } catch (error) {
+                console.error('Error accessing camera:', error);
+                alert('Failed to access camera. Please make sure you have granted camera permissions.');
+            }
+        }
+
+        // Handle end call
+        endCallButton.addEventListener('click', () => {
+            if (localStream) {
+                localStream.getTracks().forEach(track => track.stop());
+            }
+            window.location.href = '../home/home.html';
+        });
+
+        // Handle page unload
+        window.addEventListener('beforeunload', () => {
+            if (localStream) {
+                localStream.getTracks().forEach(track => track.stop());
+            }
+        });
+
+        // Start video on page load
+        initializeVideo();
+    </script>
+</body>
+</html> 
