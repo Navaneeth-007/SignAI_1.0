@@ -24,13 +24,13 @@ The system leverages WebRTC for peer-to-peer video communication, Firebase for a
 ---
 ## 📸 Screenshots
 
-| Homepage | Sign Up |
-|-----------|---------|
-| <img src="screenshots/homepage.png" width="450"/> | <img src="screenshots/signup.png" width="450"/> |
+| Homepage |
+|-----------|
+| <img src="screenshots/homepage.png" width="450"/>
 
-| Login | Video Call |
-|-------|------------|
-| <img src="screenshots/login.png" width="450"/> | <img src="screenshots/videocall.png" width="450"/> |
+| Login |
+|-------|
+| <img src="screenshots/login.png" width="450"/>
 
 ---
 
