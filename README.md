@@ -1,84 +1,132 @@
-# SignAI - Real-time Sign Language Interpretation
+# SignAI 1.0 – Real-Time Sign Language Interpretation
 
-A real-time video calling application with sign language interpretation capabilities.
+> **Note:** This repository contains the **first stable implementation** of SignAI. Development has continued in **SignAI 2.0**, which introduces improved sign recognition, enhanced AI models, UI/UX improvements, performance optimizations, and additional accessibility features. This repository is maintained as the original version for reference and reproducibility.
 
-## Features
+---
 
-- Real-time video calls
-- Sign language interpretation
-- Text-to-speech output
-- User authentication with Firebase
-- WebRTC peer-to-peer connections
+## 📖 Overview
 
-## Deployment Instructions
+SignAI 1.0 is an AI-powered real-time communication platform designed to bridge the communication gap between sign language users and non-signers. The application combines real-time video calling with sign language interpretation and text-to-speech conversion, enabling more accessible and inclusive conversations.
+
+The system leverages WebRTC for peer-to-peer video communication, Firebase for authentication and signaling, and a Python-based WebSocket server for real-time sign language inference.
+
+---
+
+## ✨ Features
+
+- 📹 Real-time video calling using WebRTC
+- 🤟 AI-powered sign language interpretation
+- 🔊 Text-to-Speech (TTS) output
+- 🔐 Secure Firebase Authentication
+- ⚡ WebSocket-based real-time communication
+- ☁️ Easy deployment using Render
+
+---
+## 📸 Screenshots
+
+| Homepage | Sign Up |
+|-----------|---------|
+| <img src="screenshots/homepage.png" width="450"/> | <img src="screenshots/signup.png" width="450"/> |
+
+| Login | Video Call |
+|-------|------------|
+| <img src="screenshots/login.png" width="450"/> | <img src="screenshots/videocall.png" width="450"/> |
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- HTML5
+- CSS3
+- JavaScript
+- WebRTC
+
+### Backend
+- Python
+- WebSockets
+
+### Authentication & Database
+- Firebase Authentication
+- Firebase Firestore
+
+### Deployment
+- Render
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-1. Create a [Render.com](https://render.com) account
-2. Install [Git](https://git-scm.com/)
-3. Have a [Firebase](https://firebase.google.com/) project set up
+Before running the project, ensure you have:
 
-### Deployment Steps
+- Git
+- Node.js and npm
+- Python 3.8+
+- Firebase project
+- Render account (for deployment)
 
-1. Push your code to a GitHub repository:
+---
+
+## 📥 Installation
+
+### Clone the repository
+
 ```bash
-git init
-git add .
-git commit -m "Initial commit"
-git remote add origin YOUR_GITHUB_REPO_URL
-git push -u origin main
+git clone https://github.com/Navaneeth-007/SignAI_1.0.git
+cd SignAI
 ```
 
-2. On Render.com:
-   - Click "New +"
-   - Select "Blueprint"
-   - Connect your GitHub repository
-   - Click "Connect"
+---
 
-3. Render will automatically detect the `render.yaml` and create two services:
-   - `signai-frontend`: Static site hosting the web interface
-   - `signai-websocket`: Python service running the WebSocket server
+### Install Frontend Dependencies
 
-4. Add environment variables in Render dashboard:
-   - For frontend service:
-     - `VITE_WS_URL`: WebSocket server URL (will be automatically set)
-   - For WebSocket service:
-     - `PORT`: 10000 (already set in render.yaml)
-     - `PYTHON_VERSION`: 3.8.0 (already set in render.yaml)
-
-5. Your app will be deployed to:
-   - Frontend: `https://signai-frontend.onrender.com`
-   - WebSocket: `wss://signai-websocket.onrender.com`
-
-### Local Development
-
-1. Install dependencies:
 ```bash
 npm install
+```
+
+---
+
+### Install Backend Dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-2. Start the frontend:
+---
+
+## ▶️ Running the Application
+
+### Start the Frontend
+
 ```bash
 npm start
 ```
 
-3. Start the WebSocket server:
+### Start the WebSocket Server
+
 ```bash
 python server/websocket_server.py
 ```
 
-4. Access the app at `http://localhost:3000`
+The application will be available at:
 
-## Environment Variables
+```
+http://localhost:3000
+```
 
-- `VITE_WS_URL`: WebSocket server URL
-- `PORT`: Port for WebSocket server
-- `PYTHON_VERSION`: Python version for the server
+---
 
-## Firebase Configuration
+# 🔥 Firebase Configuration
 
-Update the Firebase configuration in `call/call.html` with your project details:
+Create a Firebase project and replace the configuration inside:
+
+```
+call/call.html
+```
+
+with your project credentials.
 
 ```javascript
 const firebaseConfig = {
@@ -91,6 +139,87 @@ const firebaseConfig = {
 };
 ```
 
-## Support
+# 🔄 Application Workflow
 
-For issues and support, please create an issue in the GitHub repository. 
+1. User logs in using Firebase Authentication.
+2. A WebRTC peer-to-peer video call is established.
+3. Video frames are streamed to the WebSocket server.
+4. The AI model processes incoming sign language gestures.
+5. Recognized text is returned to the client.
+6. The text is converted into speech using Text-to-Speech.
+7. Both participants communicate seamlessly in real time.
+
+---
+
+# 📌 Version Information
+
+| Version | Status | Description |
+|----------|--------|-------------|
+| **SignAI 1.0** | Stable | Initial implementation featuring real-time video calls, sign language interpretation, and text-to-speech. |
+| **SignAI 2.0** | Latest | Enhanced AI models, improved recognition accuracy, performance optimizations, refined UI/UX, and additional accessibility features. |
+
+---
+
+# 🚧 Future Improvements
+
+The following enhancements are implemented or being explored in later versions (SignAI 2.0):
+
+- Improved sign recognition accuracy
+- Faster real-time inference
+- Better UI/UX
+- Optimized communication pipeline
+- Enhanced model fine-tuning
+- Multi-language support
+- Additional accessibility features
+- Improved scalability
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome.
+
+1. Fork the repository.
+2. Create a feature branch.
+
+```bash
+git checkout -b feature-name
+```
+
+3. Commit your changes.
+
+```bash
+git commit -m "Add new feature"
+```
+
+4. Push to GitHub.
+
+```bash
+git push origin feature-name
+```
+
+5. Open a Pull Request.
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+# 👨‍💻 Author
+
+**Navaneeth S**
+
+M.Tech Computer Science (Artificial Intelligence & Machine Learning)
+
+Amrita School of Computing
+
+---
+
+# ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
+
+For bugs, feature requests, or suggestions, please open an Issue in this repository.
